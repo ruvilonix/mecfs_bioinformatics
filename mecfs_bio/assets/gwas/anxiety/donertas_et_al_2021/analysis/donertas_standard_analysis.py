@@ -18,7 +18,7 @@ DONERTAS_ANXIETY_STANDARD_ANALYSIS = (
     concrete_standard_analysis_generator_assume_already_has_rsid(
         base_name="donertas_et_al_anxiety_standard_analysis",
         raw_gwas_data_task=DONERTAS_ET_AL_ANXIETY_EXTRACTED,
-        sample_size=484598,  # from gwas caltalog
+        sample_size=484598,  # from gwas catalog
         include_hba_magma_tasks=True,
         fmt=GWASLabColumnSpecifiers(
             rsid="hm_rsid",
@@ -27,12 +27,12 @@ DONERTAS_ANXIETY_STANDARD_ANALYSIS = (
             pos="hm_pos",
             ea="hm_effect_allele",
             nea="hm_other_allele",
-            OR="hm_odds_ratio",
-            se="standard_error",
-            p="p_value",
             info=None,
             eaf="hm_effect_allele_frequency",
             beta="hm_beta",
+            p="p_value",
+            se="standard_error",
+            OR=None,
         ),
         pre_pipe=DropNullsPipe(),
         hba_plot_settings=PlotSettings("plotly_white"),

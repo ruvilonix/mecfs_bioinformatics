@@ -10,6 +10,8 @@ Dönertaş, Handan Melike et al. “Common genetic associations between age-rela
 
 from pathlib import PurePath
 
+import polars as pl
+
 from mecfs_bio.build_system.meta.asset_id import AssetId
 from mecfs_bio.build_system.meta.gwas_summary_file_meta import GWASSummaryDataFileMeta
 from mecfs_bio.build_system.meta.read_spec.dataframe_read_spec import (
@@ -26,7 +28,11 @@ DONERTAS_ET_AL_ANXIETY_RAW = DownloadFileTask(
         sub_dir="raw",
         project_path=PurePath("33959723-GCST90038651-EFO_0004262.h.tsv.gz"),
         read_spec=DataFrameReadSpec(
-            format=DataFrameTextFormat(separator="\t", null_values=["NaN", "NA"]),
+            format=DataFrameTextFormat(
+                separator="\t", 
+                null_values=["NaN", "NA"],
+                schema_overrides={"hm_chrom": pl.String()},
+            ),
         ),
     ),
     url="https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90038001-GCST90039000/GCST90038651/harmonised/33959723-GCST90038651-EFO_0004262.h.tsv.gz",
