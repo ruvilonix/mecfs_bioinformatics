@@ -32,9 +32,8 @@ DONERTAS_ANXIETY_STANDARD_ANALYSIS = (
             beta="hm_beta",
             p="p_value",
             se="standard_error",
-            OR="hm_odds_ratio",
+            OR=None,
         ),
-        pre_pipe=DropNullsPipe(),
         hba_plot_settings=PlotSettings("plotly_white"),
         include_independent_cluster_plot_in_hba=True,
     )
