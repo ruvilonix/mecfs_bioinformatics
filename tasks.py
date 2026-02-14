@@ -124,7 +124,7 @@ def check_local_links(c):
     Check local links with lychee
     """
     print("Checking offline links with lychee...")
-    cmd = f"pixi r lychee  --offline {SRC_PATH} {DOCS_PATH}"
+    cmd = f"pixi r lychee --exclude {FIGS_PATH}  --offline {SRC_PATH} {DOCS_PATH}"
     print(f"running {cmd}")
     c.run(cmd)
 
@@ -151,14 +151,6 @@ def install_r_packages(c):
     Install R packages such as TwoSampleMR
     """
     c.run("pixi r install-mr", pty=True)
-
-
-@task(pre=[install_r_packages, green])
-def init(c):
-    """
-    Initial repo setup
-    """
-    pass
 
 
 ### Figures and Documentation
@@ -191,3 +183,12 @@ def sdocs(c, strict: bool = False):
     Retrieve figures, then serve docs
     """
     serve_docs(c, strict)
+
+
+# initialization
+@task(pre=[install_r_packages, pfig, green])
+def init(c):
+    """
+    Initial repo setup
+    """
+    pass
