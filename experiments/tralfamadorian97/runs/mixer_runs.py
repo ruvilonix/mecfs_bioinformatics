@@ -9,7 +9,7 @@ def run_mixer():
         ]+DECODE_ME_UNIVARIATE_MIXER.terminal_tasks(),
         incremental_save=True,
         must_rebuild_transitive=[
-            DECODE_ME_UNIVARIATE_MIXER.combine_task
+            DECODE_ME_UNIVARIATE_MIXER.result_markdown_table_task
         ]
     )
 
